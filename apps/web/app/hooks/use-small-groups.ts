@@ -14,7 +14,7 @@ export interface CreateSmallGroupInput {
 }
 
 const fetchRecentSmallGroup = async (): Promise<SmallGroup> => {
-  const response = await fetch(`${env.VITE_API_URL}/api/small-groups/recent`);
+  const response = await fetch(`${env.VITE_API_URL}/small-groups/recent`);
 
   if (!response.ok) {
     if (response.status === 404) {
@@ -27,7 +27,7 @@ const fetchRecentSmallGroup = async (): Promise<SmallGroup> => {
 };
 
 const createSmallGroup = async (data: CreateSmallGroupInput): Promise<SmallGroup> => {
-  const response = await fetch(`${env.VITE_API_URL}/api/small-groups`, {
+  const response = await fetch(`${env.VITE_API_URL}/small-groups`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
