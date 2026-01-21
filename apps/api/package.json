@@ -19,6 +19,7 @@
   "license": "ISC",
   "dependencies": {
     "@t3-oss/env-core": "^0.13.10",
+    "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "drizzle-orm": "^0.45.1",
     "express": "^5.2.1",
@@ -28,6 +29,7 @@
   "devDependencies": {
     "@flocky/eslint-config": "workspace:^",
     "@flocky/typescript-config": "workspace:^",
+    "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/node": "^22",
     "@types/pg": "^8.16.0",

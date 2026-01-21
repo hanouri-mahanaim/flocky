@@ -1,3 +1,4 @@
+import cors from "cors";
 import express from "express";
 
 import smallGroupsRouter from "./routes/small-groups";
@@ -5,6 +6,7 @@ import smallGroupsRouter from "./routes/small-groups";
 const app = express();
 const port = process.env.PORT ?? 8080;
 
+app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
