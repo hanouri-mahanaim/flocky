@@ -6,7 +6,25 @@
   "singleQuote": false,
   "printWidth": 100,
   "plugins": ["@ianvs/prettier-plugin-sort-imports"],
-  "importOrder": ["^@workspace/*", "", "<BUILTIN_MODULES>", "", "^@/", "", "^[.]"],
+  "importOrder": [
+    "^@workspace/*",
+    "",
+    "<BUILTIN_MODULES>",
+    "",
+    "<THIRD_PARTY_MODULES>",
+    "",
+    "^@/",
+    "",
+    "^[.]"
+  ],
   "importOrderCaseSensitive": true,
-  "importOrderParserPlugins": ["typescript", "jsx"]
+  "importOrderParserPlugins": ["typescript", "jsx"],
+  "overrides": [
+    {
+      "files": "*.json",
+      "options": {
+        "trailingComma": "none"
+      }
+    }
+  ]
 }
