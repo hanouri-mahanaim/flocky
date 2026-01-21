@@ -8,5 +8,13 @@
   "plugins": ["@ianvs/prettier-plugin-sort-imports"],
   "importOrder": ["^@workspace/*", "", "<BUILTIN_MODULES>", "", "^@/", "", "^[.]"],
   "importOrderCaseSensitive": true,
-  "importOrderParserPlugins": ["typescript", "jsx"]
+  "importOrderParserPlugins": ["typescript", "jsx"],
+  "overrides": [
+    {
+      "files": "*.json",
+      "options": {
+        "trailingComma": "none"
+      }
+    }
+  ]
 }
