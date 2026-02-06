@@ -18,6 +18,8 @@
     "@typescript-eslint/parser": "^8.53.1",
     "eslint": "^8.57.1",
     "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.2.3",
+    "prettier": "^3.5.0",
     "eslint-plugin-unicorn": "^55.0.0"
   },
   "peerDependencies": {

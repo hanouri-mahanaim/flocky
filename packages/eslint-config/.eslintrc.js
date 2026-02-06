@@ -4,8 +4,12 @@ module.exports = {
     node: true,
   },
   parser: "@typescript-eslint/parser",
-  extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended", "prettier"],
-  plugins: ["@typescript-eslint", "unicorn"],
+  extends: [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
+  ],
+  plugins: ["@typescript-eslint", "unicorn", "prettier"],
   parserOptions: {
     sourceType: "module",
     ecmaVersion: 2020,
