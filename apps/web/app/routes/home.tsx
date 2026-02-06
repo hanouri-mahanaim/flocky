@@ -33,7 +33,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-linear-to-br from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900">
-      <div className="p-8 max-w-3xl mx-auto space-y-8">
+      <div className="mx-auto max-w-3xl space-y-8 p-8">
         <div className="space-y-2">
           <h1 className="text-4xl font-bold tracking-tight">Small Groups</h1>
         </div>
@@ -54,7 +54,7 @@ export default function Home() {
                   value={groupName}
                   onChange={(e) => setGroupName(e.target.value)}
                   placeholder="Enter group name"
-                  className="w-full px-4 py-3 text-sm border border-input bg-background rounded-lg focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="border-input bg-background focus:ring-ring w-full rounded-lg border px-4 py-3 text-sm transition-all focus:border-transparent focus:ring-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
                   disabled={createGroup.isPending}
                 />
               </div>
@@ -68,15 +68,15 @@ export default function Home() {
               </Button>
             </form>
             {createGroup.isError && (
-              <div className="mt-4 p-3 bg-destructive/10 border border-destructive/20 rounded-lg">
-                <p className="text-sm text-destructive font-medium">
+              <div className="bg-destructive/10 border-destructive/20 mt-4 rounded-lg border p-3">
+                <p className="text-destructive text-sm font-medium">
                   Error: {createGroup.error.message}
                 </p>
               </div>
             )}
             {createGroup.isSuccess && (
-              <div className="mt-4 p-3 bg-green-50 dark:bg-green-950/20 border border-green-200 dark:border-green-900 rounded-lg">
-                <p className="text-sm text-green-700 dark:text-green-400 font-medium">
+              <div className="mt-4 rounded-lg border border-green-200 bg-green-50 p-3 dark:border-green-900 dark:bg-green-950/20">
+                <p className="text-sm font-medium text-green-700 dark:text-green-400">
                   Group created successfully!
                 </p>
               </div>
@@ -90,26 +90,26 @@ export default function Home() {
           </CardHeader>
           <CardContent>
             {isLoading && (
-              <div className="flex items-center gap-2 text-muted-foreground">
+              <div className="text-muted-foreground flex items-center gap-2">
                 <div className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
                 <p className="text-sm">Loading...</p>
               </div>
             )}
             {error && (
-              <div className="p-3 bg-destructive/10 border border-destructive/20 rounded-lg">
-                <p className="text-sm text-destructive font-medium">Error: {error.message}</p>
+              <div className="bg-destructive/10 border-destructive/20 rounded-lg border p-3">
+                <p className="text-destructive text-sm font-medium">Error: {error.message}</p>
               </div>
             )}
             {recentGroup && (
               <div className="space-y-4">
                 <div className="space-y-1.5">
-                  <Label className="text-xs text-muted-foreground uppercase tracking-wide">
+                  <Label className="text-muted-foreground text-xs tracking-wide uppercase">
                     Name
                   </Label>
                   <p className="text-lg font-semibold">{recentGroup.name}</p>
                 </div>
                 <div className="space-y-1.5">
-                  <Label className="text-xs text-muted-foreground uppercase tracking-wide">
+                  <Label className="text-muted-foreground text-xs tracking-wide uppercase">
                     Created
                   </Label>
                   <p className="text-sm">{new Date(recentGroup.createdAt).toLocaleString()}</p>
