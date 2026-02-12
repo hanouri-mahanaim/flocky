@@ -1,36 +1,23 @@
-import { AppSidebar } from "@/components/app-sidebar";
-import { ChartAreaInteractive } from "@/components/chart-area-interactive";
-import { DataTable } from "@/components/data-table";
-import { SectionCards } from "@/components/section-cards";
-import { SiteHeader } from "@/components/site-header";
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-import data from "@/dashboard/data.json";
+import { AttendanceChart } from "@/components/dashboard/attendance-chart";
+import { MyCellGroup } from "@/components/dashboard/my-cell-group";
+import { NewMembersList } from "@/components/dashboard/new-members-list";
+import { UpcomingBirthdays } from "@/components/dashboard/upcoming-birthdays";
+import { UpcomingEvents } from "@/components/dashboard/upcoming-events";
 
 export default function Dashboard() {
   return (
-    <SidebarProvider
-      style={
-        {
-          "--sidebar-width": "calc(var(--spacing) * 72)",
-          "--header-height": "calc(var(--spacing) * 12)",
-        } as React.CSSProperties
-      }
-    >
-      <AppSidebar variant="inset" />
-      <SidebarInset>
-        <SiteHeader />
-        <div className="flex flex-1 flex-col">
-          <div className="@container/main flex flex-1 flex-col gap-2">
-            <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
-              <SectionCards />
-              <div className="px-4 lg:px-6">
-                <ChartAreaInteractive />
-              </div>
-              <DataTable data={data} />
-            </div>
-          </div>
+    <div className="@container/main flex flex-1 flex-col gap-2">
+      <div className="flex flex-col gap-4 px-4 py-4 md:gap-6 md:py-6 lg:px-6">
+        <MyCellGroup />
+        <div className="grid grid-cols-1 gap-4 md:gap-6 @3xl/main:grid-cols-[1fr_2fr]">
+          <UpcomingBirthdays />
+          <AttendanceChart />
         </div>
-      </SidebarInset>
-    </SidebarProvider>
+        <div className="grid grid-cols-1 gap-4 md:gap-6 @3xl/main:grid-cols-[1fr_2fr]">
+          <UpcomingEvents />
+          <NewMembersList />
+        </div>
+      </div>
+    </div>
   );
 }
