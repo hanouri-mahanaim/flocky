@@ -3,6 +3,12 @@ import { index, layout, prefix, route, type RouteConfig } from "@react-router/de
 export default [
   index("routes/home.tsx"),
   ...prefix("app", [
-    layout("components/layout/app-layout.tsx", [route("dashboard", "routes/app/dashboard.tsx")]),
+    layout("components/layout/app-layout.tsx", [
+      route("dashboard", "routes/app/dashboard.tsx"),
+      ...prefix("cell-groups", [
+        index("routes/app/cell-groups/index.tsx"),
+        route(":id", "routes/app/cell-groups/details.tsx"),
+      ]),
+    ]),
   ]),
 ] satisfies RouteConfig as RouteConfig;
