@@ -1,11 +1,11 @@
 {
-  "name": "api-spring",
+  "name": "api",
   "version": "0.0.1",
   "private": true,
   "description": "Backend API for the Flocky community management platform",
   "scripts": {
     "build": "./gradlew build -x test",
-    "start": "java -jar build/libs/api-spring-0.0.1-SNAPSHOT.jar",
+    "start": "java -jar build/libs/api-0.0.1-SNAPSHOT.jar",
     "dev": "./gradlew bootRun & ./gradlew -t classes -x ktlintMainSourceSetCheck & wait",
     "test": "./gradlew test",
     "lint": "./gradlew ktlintFormat",
