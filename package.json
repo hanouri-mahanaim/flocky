@@ -9,7 +9,8 @@
     "format": "turbo run format",
     "format:check": "turbo run format:check",
     "lint": "turbo run lint",
-    "lint:check": "turbo run lint:check"
+    "lint:check": "turbo run lint:check",
+    "typecheck": "turbo run typecheck"
   },
   "devDependencies": {
     "@flocky/eslint-config": "workspace:^",
