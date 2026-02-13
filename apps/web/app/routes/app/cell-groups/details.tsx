@@ -1,5 +1,5 @@
 import { ChevronLeftIcon, ClipboardListIcon, PlusIcon, UsersIcon } from "lucide-react";
-import { Link, useParams } from "react-router";
+import { Link } from "react-router";
 
 import { GenderIcon, type Gender } from "@/components/gender-icon";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -21,6 +21,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+
+import type { Route } from "./+types/details";
 
 type Member = {
   name: string;
@@ -159,33 +161,7 @@ function getAttendanceBadgeVariant(
   return "destructive";
 }
 
-export default function CellGroupDetails() {
-  const { id } = useParams();
-
-  if (!id) {
-    return (
-      <div className="@container/main flex flex-1 flex-col gap-2">
-        <div className="flex flex-col gap-4 px-4 py-4 md:gap-6 md:py-6 lg:px-6">
-          <Empty className="border py-16">
-            <EmptyHeader>
-              <EmptyMedia variant="icon">
-                <UsersIcon />
-              </EmptyMedia>
-              <EmptyTitle>잘못된 요청입니다</EmptyTitle>
-              <EmptyDescription>유효한 목장 ID가 제공되지 않았습니다.</EmptyDescription>
-            </EmptyHeader>
-            <Button variant="outline" asChild>
-              <Link to="/app/cell-groups">
-                <ChevronLeftIcon />
-                목장 목록으로 돌아가기
-              </Link>
-            </Button>
-          </Empty>
-        </div>
-      </div>
-    );
-  }
-
+export default function CellGroupDetails({ params: { id } }: Route.ComponentProps) {
   const cellGroup = cellGroupsMap[id];
   const reports = reportsMap[id] ?? [];
 
