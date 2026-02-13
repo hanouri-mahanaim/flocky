@@ -15,6 +15,12 @@ class GlobalExceptionHandler {
             .status(HttpStatus.NOT_FOUND)
             .body(ErrorResponse(status = 404, message = ex.message ?: "Not found"))
 
+    @ExceptionHandler(IllegalArgumentException::class)
+    fun handleBadRequest(ex: IllegalArgumentException): ResponseEntity<ErrorResponse> =
+        ResponseEntity
+            .status(HttpStatus.BAD_REQUEST)
+            .body(ErrorResponse(status = 400, message = ex.message ?: "Bad request"))
+
     @ExceptionHandler(MethodArgumentNotValidException::class)
     fun handleValidation(ex: MethodArgumentNotValidException): ResponseEntity<ErrorResponse> {
         val message = ex.bindingResult.fieldErrors
