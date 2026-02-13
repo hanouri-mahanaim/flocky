@@ -7,6 +7,8 @@ export default defineConfig({
   schema: "./src/db/schema.ts",
   dialect: "postgresql",
   dbCredentials: {
-    url: process.env.DATABASE_URL!, // TODO: Make this work with env.ts
+    // TODO: Make this work with env.ts
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    url: process.env.DATABASE_URL!,
   },
 });
