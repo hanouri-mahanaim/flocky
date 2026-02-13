@@ -9,6 +9,11 @@ export default [
         index("routes/app/cell-groups/index.tsx"),
         route(":id", "routes/app/cell-groups/details.tsx"),
       ]),
+      ...prefix("members", [
+        index("routes/app/members/index.tsx"),
+        route("new-members", "routes/app/members/new-members.tsx"),
+        route(":id", "routes/app/members/details.tsx"),
+      ]),
     ]),
   ]),
 ] satisfies RouteConfig as RouteConfig;

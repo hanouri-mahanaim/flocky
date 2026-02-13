@@ -48,8 +48,8 @@ const data: SidebarData = {
       title: "교인관리",
       icon: <UsersIcon />,
       items: [
-        { title: "교인 목록", url: "#" },
-        { title: "새가족", url: "#" },
+        { title: "교인 목록", url: "/app/members" },
+        { title: "새가족", url: "/app/members/new-members" },
       ],
     },
     {
