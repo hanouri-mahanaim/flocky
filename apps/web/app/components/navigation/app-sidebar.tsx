@@ -1,4 +1,5 @@
 import {
+  ArrowLeftIcon,
   CalendarIcon,
   CircleHelpIcon,
   ClipboardCheckIcon,
@@ -8,6 +9,7 @@ import {
   Settings2Icon,
   UsersIcon,
 } from "lucide-react";
+import { Link } from "react-router";
 
 import {
   Sidebar,
@@ -96,9 +98,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton asChild className="data-[slot=sidebar-menu-button]:p-1.5!">
-              <a href="#">
+              <Link to="/">
+                <ArrowLeftIcon className="size-4" />
                 <span className="text-base font-semibold">Flocky</span>
-              </a>
+              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
