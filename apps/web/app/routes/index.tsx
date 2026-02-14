@@ -11,6 +11,7 @@ import {
 import { Link } from "react-router";
 
 import { Button } from "@/components/ui/button";
+import { useLogout, useSession } from "@/hooks/use-auth";
 
 export function meta() {
   return [
@@ -20,6 +21,13 @@ export function meta() {
 }
 
 function Navbar() {
+  const { data: session } = useSession();
+  const { mutateAsync: logout } = useLogout();
+
+  const handleLogout = async () => {
+    await logout();
+  };
+
   return (
     <nav className="border-border bg-background/95 supports-backdrop-filter:bg-background/60 sticky top-0 z-50 border-b backdrop-blur">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -27,12 +35,22 @@ function Navbar() {
           <span className="text-foreground text-xl font-bold tracking-tight">Flocky</span>
         </Link>
         <div className="flex items-center gap-4">
-          <Link
-            to="/login"
-            className="text-muted-foreground hover:text-foreground hidden text-sm font-medium transition-colors sm:block"
-          >
-            로그인
-          </Link>
+          {session ? (
+            <button
+              type="button"
+              onClick={handleLogout}
+              className="text-muted-foreground hover:text-foreground hidden text-sm font-medium transition-colors sm:block"
+            >
+              로그아웃
+            </button>
+          ) : (
+            <Link
+              to="/auth/login"
+              className="text-muted-foreground hover:text-foreground hidden text-sm font-medium transition-colors sm:block"
+            >
+              로그인
+            </Link>
+          )}
           <Button asChild>
             <Link to="/app/dashboard">
               시작하기

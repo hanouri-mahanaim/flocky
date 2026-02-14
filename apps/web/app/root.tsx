@@ -13,6 +13,7 @@ import "./app.css";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
+import { Toaster } from "./components/ui/sonner";
 import { TooltipProvider } from "./components/ui/tooltip";
 
 const queryClient = new QueryClient();
@@ -41,6 +42,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <TooltipProvider>{children}</TooltipProvider>
+        <Toaster />
         <ScrollRestoration />
         <Scripts />
       </body>

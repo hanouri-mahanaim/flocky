@@ -74,7 +74,7 @@ class AuthService(
 
         val session = createSession(user, ipAddress, userAgent)
 
-        return toAuthResponse(session.token, user)
+        return toAuthResponse(session, user)
     }
 
     @Transactional
@@ -94,7 +94,7 @@ class AuthService(
         val user = account.user
         val session = createSession(user, ipAddress, userAgent)
 
-        return toAuthResponse(session.token, user)
+        return toAuthResponse(session, user)
     }
 
     @Transactional
@@ -138,11 +138,12 @@ class AuthService(
         )
 
     private fun toAuthResponse(
-        token: String,
+        session: Session,
         user: User,
     ): AuthResponse =
         AuthResponse(
-            token = token,
+            token = session.token,
+            expiresAt = session.expiresAt,
             user =
                 AuthResponse.UserInfo(
                     id = user.id!!,

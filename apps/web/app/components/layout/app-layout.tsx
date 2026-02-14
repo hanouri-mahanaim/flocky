@@ -1,9 +1,14 @@
 import { Outlet } from "react-router";
 
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { requireAuth } from "@/lib/require-auth";
 
 import { AppHeader } from "../navigation/app-header";
 import { AppSidebar } from "../navigation/app-sidebar";
+
+export function clientLoader() {
+  return { session: requireAuth() };
+}
 
 export default function AppLayout() {
   return (
