@@ -29,7 +29,7 @@ class SecurityConfig(
                 sessionCreationPolicy = SessionCreationPolicy.STATELESS
             }
             authorizeHttpRequests {
-                authorize("/api/auth/**", permitAll)
+                authorize("/auth/**", permitAll)
                 authorize("/actuator/health", permitAll)
                 authorize(anyRequest, authenticated)
             }
