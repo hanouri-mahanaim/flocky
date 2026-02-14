@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { getSession, login, logout, register, type AuthSession } from "@/lib/auth-client";
 
@@ -15,21 +15,36 @@ export function useSession() {
 type SignInInput = { email: string; password: string };
 
 export function useLogin() {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: ({ email, password }: SignInInput) => login(email, password),
+    onSuccess: (session) => {
+      queryClient.setQueryData(SESSION_QUERY_KEY, session);
+    },
   });
 }
 
 type SignUpInput = { name: string; email: string; password: string };
 
 export function useRegister() {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: ({ name, email, password }: SignUpInput) => register(name, email, password),
+    onSuccess: (session) => {
+      queryClient.setQueryData(SESSION_QUERY_KEY, session);
+    },
   });
 }
 
 export function useLogout() {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: () => logout(),
+    onSuccess: () => {
+      queryClient.setQueryData(SESSION_QUERY_KEY, null);
+    },
   });
 }
