@@ -28,7 +28,7 @@ function Navbar() {
         </Link>
         <div className="flex items-center gap-4">
           <Link
-            to="/login"
+            to="/auth/login"
             className="text-muted-foreground hover:text-foreground hidden text-sm font-medium transition-colors sm:block"
           >
             로그인
