@@ -90,15 +90,25 @@ export async function login(email: string, password: string): Promise<AuthSessio
   return handleAuthResponse(response);
 }
 
-export async function register(
-  name: string,
-  email: string,
-  password: string,
-): Promise<AuthSession> {
+export type RegisterInput = {
+  name: string;
+  email: string;
+  password: string;
+  gender: string;
+  birthday?: string;
+  phoneNumber?: string;
+  addressStreet?: string;
+  addressCity?: string;
+  addressState?: string;
+  addressPostalCode?: string;
+  addressCountry?: string;
+};
+
+export async function register(input: RegisterInput): Promise<AuthSession> {
   const response = await fetch(`${env.VITE_API_URL}/auth/register`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email, password, name }),
+    body: JSON.stringify(input),
   });
 
   return handleAuthResponse(response);
