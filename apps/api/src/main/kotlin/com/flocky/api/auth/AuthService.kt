@@ -49,6 +49,15 @@ class AuthService(
                 User(
                     email = request.email,
                     name = request.name,
+                    gender = request.gender,
+                    birthday = request.birthday,
+                    addressStreet = request.addressStreet,
+                    addressCity = request.addressCity,
+                    addressState = request.addressState,
+                    addressPostalCode = request.addressPostalCode,
+                    addressCountry = request.addressCountry,
+                    phoneNumber = request.phoneNumber,
+                    avatarUrl = request.avatarUrl,
                 ),
             )
 
