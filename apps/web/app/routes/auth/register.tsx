@@ -7,6 +7,13 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Field, FieldDescription, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { useRegister } from "@/hooks/use-auth";
 import { requireGuest } from "@/lib/require-auth";
 import { cn } from "@/lib/utils";
@@ -22,6 +29,14 @@ export default function RegisterPage() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [gender, setGender] = useState("");
+  const [birthday, setBirthday] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [addressStreet, setAddressStreet] = useState("");
+  const [addressCity, setAddressCity] = useState("");
+  const [addressState, setAddressState] = useState("");
+  const [addressPostalCode, setAddressPostalCode] = useState("");
+  const [addressCountry, setAddressCountry] = useState("");
 
   const { mutateAsync: register, isPending } = useRegister();
   const navigate = useNavigate();
@@ -35,7 +50,19 @@ export default function RegisterPage() {
     }
 
     try {
-      await register({ name, email, password });
+      await register({
+        name,
+        email,
+        password,
+        gender,
+        birthday: birthday || undefined,
+        phoneNumber: phoneNumber || undefined,
+        addressStreet: addressStreet || undefined,
+        addressCity: addressCity || undefined,
+        addressState: addressState || undefined,
+        addressPostalCode: addressPostalCode || undefined,
+        addressCountry: addressCountry || undefined,
+      });
       navigate("/app/dashboard");
     } catch (err) {
       const message = err instanceof Error ? err.message : "회원가입에 실패했습니다";
@@ -85,6 +112,99 @@ export default function RegisterPage() {
                       disabled={isPending}
                     />
                   </Field>
+                  <Field>
+                    <FieldLabel htmlFor="gender">성별</FieldLabel>
+                    <Select value={gender} onValueChange={setGender} required disabled={isPending}>
+                      <SelectTrigger id="gender">
+                        <SelectValue placeholder="성별을 선택하세요" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="MALE">남성</SelectItem>
+                        <SelectItem value="FEMALE">여성</SelectItem>
+                        <SelectItem value="OTHER">기타</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </Field>
+                  <Field>
+                    <FieldLabel htmlFor="birthday">생년월일</FieldLabel>
+                    <Input
+                      id="birthday"
+                      type="date"
+                      value={birthday}
+                      onChange={(e) => setBirthday(e.target.value)}
+                      disabled={isPending}
+                    />
+                  </Field>
+                  <Field>
+                    <FieldLabel htmlFor="phoneNumber">전화번호</FieldLabel>
+                    <Input
+                      id="phoneNumber"
+                      type="tel"
+                      placeholder="+64211234567"
+                      value={phoneNumber}
+                      onChange={(e) => setPhoneNumber(e.target.value)}
+                      disabled={isPending}
+                    />
+                  </Field>
+                  <Field>
+                    <FieldLabel htmlFor="addressStreet">주소</FieldLabel>
+                    <Input
+                      id="addressStreet"
+                      type="text"
+                      placeholder="123 Queen Street"
+                      value={addressStreet}
+                      onChange={(e) => setAddressStreet(e.target.value)}
+                      disabled={isPending}
+                    />
+                  </Field>
+                  <div className="grid grid-cols-2 gap-4">
+                    <Field>
+                      <FieldLabel htmlFor="addressCity">도시</FieldLabel>
+                      <Input
+                        id="addressCity"
+                        type="text"
+                        placeholder="Auckland"
+                        value={addressCity}
+                        onChange={(e) => setAddressCity(e.target.value)}
+                        disabled={isPending}
+                      />
+                    </Field>
+                    <Field>
+                      <FieldLabel htmlFor="addressState">시/도</FieldLabel>
+                      <Input
+                        id="addressState"
+                        type="text"
+                        placeholder="Auckland"
+                        value={addressState}
+                        onChange={(e) => setAddressState(e.target.value)}
+                        disabled={isPending}
+                      />
+                    </Field>
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <Field>
+                      <FieldLabel htmlFor="addressPostalCode">우편번호</FieldLabel>
+                      <Input
+                        id="addressPostalCode"
+                        type="text"
+                        placeholder="1010"
+                        value={addressPostalCode}
+                        onChange={(e) => setAddressPostalCode(e.target.value)}
+                        disabled={isPending}
+                      />
+                    </Field>
+                    <Field>
+                      <FieldLabel htmlFor="addressCountry">국가</FieldLabel>
+                      <Input
+                        id="addressCountry"
+                        type="text"
+                        placeholder="New Zealand"
+                        value={addressCountry}
+                        onChange={(e) => setAddressCountry(e.target.value)}
+                        disabled={isPending}
+                      />
+                    </Field>
+                  </div>
                   <Field>
                     <Field>
                       <FieldLabel htmlFor="password">비밀번호</FieldLabel>
